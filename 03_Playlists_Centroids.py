@@ -50,3 +50,16 @@ plt.title("Most representative words : PCA")
 plt.legend(prop={'size': 6})
 plt.rcParams['figure.dpi'] = 100
 plt.show()
+
+
+## Plot PCA on centroids only
+pca = PCA()
+p1 = pca.fit_transform(np.array([centroid_1, centroid_0]))
+pl_1 = p1[1]
+pl_0 = p1[0]
+plt.scatter(pl_1[0],pl_1[1], c='darkblue', label='1-Metal')
+plt.scatter(pl_0[0],pl_0[1], c='crimson', label='0-Pop')
+plt.title("Playlists Centroids | PCA")
+plt.legend(prop={'size': 6})
+plt.ticklabel_format(useOffset=False)
+plt.show()
