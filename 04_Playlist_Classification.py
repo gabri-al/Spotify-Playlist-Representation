@@ -1,3 +1,7 @@
+from sklearn import metrics
+from sklearn.model_selection import GridSearchCV
+from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
+
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### 
 ### Test Set Upload
 _import_path = r'Your path'
@@ -88,8 +92,12 @@ LRCV.fit(X_train,y_train)
 print("Tuned Hyperparameters :", LRCV.best_params_)
 print("Accuracy :",LRCV.best_score_)
 
-### Logistic Regression Train
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### 
+### Logistic Regression Train & Test
+LogReg = LogisticRegression(max_iter=5000, penalty = 'l2', C = 1000.0, solver="newton-cg")
+LogReg.fit(X_train,y_train)
+y_pred = LogReg.predict(X_test)
+print(y_pred) # Prediction
 
-
-
-### Logistic regression Test
+print("Train Accuracy:",LogReg.score(X_train, y_train))
+print("Test Accuracy:",LogReg.score(X_test, y_test))
